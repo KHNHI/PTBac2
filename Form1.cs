@@ -22,6 +22,10 @@ namespace PTBac2
 
         private void btnTinh_Click(object sender, EventArgs e)
         {
+            txtResult.Text = SolveEquation();   
+        }
+        private string SolveEquation()
+        {
             try
             {
                 double a = double.Parse(txtNumA.Text);
@@ -30,18 +34,17 @@ namespace PTBac2
 
                 if (double.TryParse(txtNumC.Text, out c)) // Nếu có giá trị C, giải phương trình bậc hai
                 {
-                    txtResult.Text = EquationSolver.SolveEquation(a, b, c);
+                   return  EquationSolver.SolveEquation(a, b, c);
                 }
                 else // Nếu C trống hoặc không hợp lệ, giải phương trình bậc nhất
                 {
-                    txtResult.Text = EquationSolver.SolveEquation(a, b);
+                    return  EquationSolver.SolveEquation(a, b);
                 }
             }
             catch (Exception ex)
             {
-                txtResult.Text = "Lỗi: " + ex.Message;
+                return txtResult.Text = "Lỗi: " + ex.Message;
             }
-
         }
 
         private void btnClear_Click(object sender, EventArgs e)
